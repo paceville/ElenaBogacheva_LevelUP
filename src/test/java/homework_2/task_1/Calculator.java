@@ -114,19 +114,30 @@ public class Calculator {
     }
 
     public void power(double number1, double power) {
-        int result = (int) number1;
-        for (int i = 2; i <= power; i++) {
-            result *= number1;
+        int result = 0;
+        if (power != 0) {
+            result = (int) number1;
+            for (int i = 2; i <= power; i++) {
+                result *= number1;
+            }
+            System.out.println("Result is: " + result);
+        } else {
+            System.out.println("Result is: 1");
         }
-        System.out.println("Result is: " + result);
     }
 
     public void factorial(double number1) {
-        int result = (int) number1;
-        for (int i = 1; i < number1; i++) {
-            result *= (number1 - i);
+        int result = 0;
+        if (number1 != 0) {
+            result = (int) number1;
+            for (int i = 1; i < number1; i++) {
+                result *= (number1 - i);
+            }
+            System.out.println("Result is: !" + (int) number1 + " = " + result);
+        } else {
+            System.out.println("Result is: !" + (int) number1 + " = 1");
         }
-        System.out.println("Result is: !" + (int) number1 + " = " + result);
+
     }
 
     public void fibonacci(double number1) {
