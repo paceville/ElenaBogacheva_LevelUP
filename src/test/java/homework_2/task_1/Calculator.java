@@ -115,14 +115,18 @@ public class Calculator {
 
     public void power(double number1, double power) {
         int result = 0;
-        if (power != 0) {
+        if (power == 0) {
+            if (number1 == 0) {
+                System.out.println("Not defined");
+            } else {
+                System.out.println("Result is: 1");
+            }
+        } else {
             result = (int) number1;
             for (int i = 2; i <= power; i++) {
                 result *= number1;
             }
             System.out.println("Result is: " + result);
-        } else {
-            System.out.println("Result is: 1");
         }
     }
 
