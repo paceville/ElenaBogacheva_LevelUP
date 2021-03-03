@@ -3,9 +3,6 @@ package homeworks_3and4.task_1.modeOfTransport;
 import homeworks_3and4.task_1.properties.Containable;
 import homeworks_3and4.task_1.properties.Flyable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Plane extends Aircraft implements Containable, Flyable {
 
     String name;
@@ -59,6 +56,13 @@ public class Plane extends Aircraft implements Containable, Flyable {
         this.maxTakeoffMass = maxTakeoffMass;
     }
 
+//    public void setPlaneName(String name) {
+//        try {
+//            setName(name);
+//        } catch (NullPointerException e) {
+//            System.err.println("Some object is not definiert: " + e);
+//        }
+//    }
 
     @Override
     public void capacity() {

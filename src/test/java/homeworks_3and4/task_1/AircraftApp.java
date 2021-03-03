@@ -7,10 +7,11 @@ import homeworks_3and4.task_1.modeOfTransport.Aircraft;
 import homeworks_3and4.task_1.modeOfTransport.Plane;
 import homeworks_3and4.task_1.modeOfTransport.PlaneType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AircraftApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InputDataTypeException, EmptyListException {
 
         Plane a321 = new Plane(PlaneType.A321, 17000);
         a321.setName("Airbus A321");
@@ -85,7 +86,6 @@ public class AircraftApp {
         airMalta.totalPlasesCapacity(airMaltaPlanes);
         airMalta.totalLiftingCapacity(airMaltaPlanes);
 
-
         Airlines airFrance = new Airlines(AirlinesNames.AIR_FRANCE, 211);
         airFrance.setActivity(true);
         airFrance.setYearOfFoundation(1933);
@@ -103,7 +103,6 @@ public class AircraftApp {
         airFrance.totalPlasesCapacity(airFrancePlanes);
         airFrance.totalLiftingCapacity(airFrancePlanes);
 
-
         Airlines alItalia = new Airlines(AirlinesNames.ALITALIA, 100);
         alItalia.setActivity(true);
         alItalia.setYearOfFoundation(1946);
@@ -120,5 +119,38 @@ public class AircraftApp {
         alItalia.totalPlasesCapacity(alItaliaPlanes);
         alItalia.totalLiftingCapacity(alItaliaPlanes);
 
+
+        //for Exceptions:
+
+        ArrayList<Airlines> airlinesList = new ArrayList<>();
+        airlinesList.add(klm);
+        airlinesList.add(null);
+        airlinesList.add(lufthansa);
+
+        printAllAirlines(airlinesList); //EmptyListException
+
+
+        Airlines finnair = new Airlines(AirlinesNames.FINNAIR, 100);
+        HashMap<Plane, Integer> finnairPlanes = new HashMap<>();
+        finnair.findPlane(finnairPlanes); //EmptyListException
+        HashMap<Aircraft, Integer> finnairAircrafts = finnair.aircraftsBase(finnairPlanes, 0,1, 3, 2,
+                0, 12, 5, 0);
+        finnair.flightDistance(finnairAircrafts); //Enter '123' instead 'max' or 'min' InputDataTypeException
+
+        Plane a320 = new Plane(PlaneType.A320, 1400);
+        Plane a330 = null;
+        //a330.setName("Airbus A330");
+        //a330.setPlaneName("Airbus A330");
+       // System.out.println(a330.getName());
+        finnair.planesBaseForFinnair(a320, a330); //NPE
+    }
+
+    public static void printAllAirlines(ArrayList<Airlines> airlineList) throws EmptyListException {
+        for (Airlines airline : airlineList) {
+            if (airline == null) {
+                throw new EmptyListException("Some airlines was not added to the List");
+            }
+        }
+        System.out.println("All available airlines: " + airlineList);
     }
 }
