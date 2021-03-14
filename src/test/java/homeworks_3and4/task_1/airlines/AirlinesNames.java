@@ -6,5 +6,6 @@ public enum AirlinesNames {
     AIR_MALTA,
     AIR_FRANCE,
     ALITALIA,
-    KLM;
+    KLM,
+    FINNAIR;
 }

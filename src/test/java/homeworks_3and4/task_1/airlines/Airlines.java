@@ -1,9 +1,11 @@
 package homeworks_3and4.task_1.airlines;
 
+import homeworks_3and4.task_1.EmptyListException;
+import homeworks_3and4.task_1.InputDataTypeException;
 import homeworks_3and4.task_1.modeOfTransport.*;
 
-import java.net.URL;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Airlines {
     AirlinesNames name;
@@ -231,9 +233,20 @@ public class Airlines {
         return planeBase;
     }
 
+    public void planesBaseForFinnair(Plane plane1, Plane plane2) {
+
+        if (plane1 == null || plane2 == null) {
+            throw new NullPointerException("Some plane is not definiert");
+        }
+        ArrayList<Plane> planeBaseFinnair = new ArrayList<>();
+        planeBaseFinnair.add(plane1);
+        planeBaseFinnair.add(plane2);
+        System.out.println("Finnairs planes: " + planeBaseFinnair);
+    }
+
     public HashMap<Aircraft, Integer> aircraftsBase(HashMap<Plane, Integer> planesBase, int countOfAmericanSportcopters, int countOfAgustaWestlands, int countOfBells,
                                               int countOfEurocopters, int countOfTricopters, int countOfQuadrocopters,
-                                              int countOfHexacopters, int countOfOctocopters) {
+                                              int countOfHexacopters, int countOfOctocopters) throws EmptyListException {
 
         Helicopter americanSportcopter = new Helicopter(HelicoptersType.AMERICAN_SPORTSCOPTER, 81);
         americanSportcopter.setName("American Sportcopter");
@@ -254,7 +267,12 @@ public class Airlines {
         octocopter.setName("Octocopter");
 
         HashMap<Aircraft, Integer> aircraftsBase = new HashMap();
+
+        if (planesBase == null) {
+            throw new EmptyListException("PlanesBase is empty");
+        }
         aircraftsBase.putAll(planesBase);
+
         aircraftsBase.put(americanSportcopter, countOfAmericanSportcopters);
         aircraftsBase.put(agustaWestland, countOfAgustaWestlands);
         aircraftsBase.put(bell, countOfBells);
@@ -267,12 +285,15 @@ public class Airlines {
         return aircraftsBase;
     }
 
-    public void flightDistance(HashMap<Aircraft, Integer> aircraftsbase) {
+    public void flightDistance(HashMap<Aircraft, Integer> aircraftsbase) throws InputDataTypeException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("What distance do you want to know? max/min");
-        String maxOrMindistance = scanner.nextLine();
-        System.out.println(aircraftsbase.size());
+        String maxOrMinDistance = scanner.next();
+
+        if (!Stream.of("min", "max").anyMatch(maxOrMinDistance :: contains)) {
+            throw new InputDataTypeException("Only values 'max' or 'min' are possible");
+        }
 
         ArrayList<Integer> flightDistanceList = new ArrayList<>();
         for (int keys = 0; keys < aircraftsbase.size(); keys++) {
@@ -282,10 +303,10 @@ public class Airlines {
             }
         }
 
-        if (maxOrMindistance.equals("min")) {
+        if (maxOrMinDistance.equals("min")) {
             Collections.sort(flightDistanceList);
             System.out.print("Min distance is: ");
-        } else if (maxOrMindistance.equals("max")) {
+        } else if (maxOrMinDistance.equals("max")) {
             Collections.sort(flightDistanceList, Collections.reverseOrder());
             System.out.print("Max distance is: ");
         }
@@ -294,11 +315,19 @@ public class Airlines {
         System.out.println(distance + " km");
     }
 
-    public void findPlane(HashMap<Plane, Integer> planeBase) {
+    public void findPlane(HashMap<Plane, Integer> planeBase) throws InputDataTypeException, EmptyListException {
+
+        if (planeBase.size() == 0) {
+            throw new EmptyListException("PlaneBase is empty");
+        }
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose amount of passengers:");
         int inputDataPassengers = scanner.nextInt();
+//        if (!scanner.hasNextInt()) { //??
+//            throw new InputDataTypeException("Amount of passengers can only be an integer");
+//        }
 
         System.out.println("Choose maximum flight altitude:");
         int inputDataAltitude = scanner.nextInt();
@@ -355,6 +384,4 @@ public class Airlines {
         }
         System.out.println("Total lifting capacity for all planes is " + totalCapacity + " kg");
     }
-
-
 }
