@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Tests for other operations">
+    <test name="OtherOperationsSuite">
+        <classes>
+            <class name="homework_5.task_1.PowTest"/>
+            <class name="homework_5.task_1.SqrtTest"/>
+            <class name="homework_5.task_1.isPositiveTest"/>
+            <class name="homework_5.task_1.isNegativeTest"/>
+        </classes>
+    </test>
+</suite>
