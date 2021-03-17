@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="AllTestsSuite">
+
+    <suite-files>
+        <suite-file path="SumMultSuite.xml"/>
+        <suite-file path="SubDivSuite.xml"/>
+        <suite-file path="TrigonometrySuite.xml"/>
+        <suite-file path="OtherOperationsSuite.xml"/>
+    </suite-files>
+
+</suite>

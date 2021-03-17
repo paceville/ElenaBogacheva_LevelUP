@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test for subtraction and division">
+    <test name="SubDivSuite">
+        <classes>
+            <class name="homework_5.task_1.SubTest"/>
+            <class name="homework_5.task_1.DivTest"/>
+        </classes>
+    </test>
+</suite>

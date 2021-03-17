@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Tests for trigonometry operations">
+    <test name="TrigonometrySuite">
+        <classes>
+            <class name="homework_5.task_1.SinTest"/>
+            <class name="homework_5.task_1.CosTest"/>
+            <class name="homework_5.task_1.TgTest"/>
+            <class name="homework_5.task_1.CtgTest"/>
+        </classes>
+    </test>
+</suite>
